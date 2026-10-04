@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "Proque",
+  "version": "0.1.0",
+  "description": "Organize notes, links, collections and tasks.",
+
+  "permissions": ["sidePanel"],
+
+  "background": {
+    "service_worker": "background.js"
+  },
+
+  "action": {
+    "default_title": "Open Proque"
+  },
+
+  "side_panel": {
+    "default_path": "index.html"
+  }
+}
