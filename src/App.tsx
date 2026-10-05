@@ -4,6 +4,7 @@ import { BottomNavigation } from "@/components/bottom-navigation";
 import { CollectionsPreview } from "@/components/collection-preview";
 import { QuickActions } from "@/components/quick-actions";
 import { TodayTasks } from "@/components/today-tasks";
+import { TabsDemo } from "./components/tabs";
 
 function App() {
   return (
@@ -24,6 +25,10 @@ function App() {
         <TodayTasks />
 
         <CollectionsPreview />
+      </div>
+
+      <div className="shrink-0 p-4">
+        <TabsDemo />
       </div>
 
       <div className="shrink-0 pb-2">
