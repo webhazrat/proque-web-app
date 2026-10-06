@@ -1,0 +1,41 @@
+Act as a prompt engineer of 10 years of experience. Now generate a prompt to make a UI for "Proque" application which has bellow features. I will provide this prompt to figma make to make a UI.
+
+
+
+Features:
+
+Collections management- group wise collections like in a collection can link, rich text with title, date. Also will have edit, delete, share collection
+
+Task management- Project wise task/to do management, task drag drop priority, edit, delete, share, status management like processing, pending, completed
+
+Profile Management- can login with email, then can add multiple emails, associated emails ui, add email, remove
+
+
+
+UI and Screens:
+
+Home screen: Todays reminder, last 3-5 collections, bottom navigation with Home, Tasks, Collections
+
+Collections and Single Collection screen with collections items
+
+Tasks and single task screen with task itmes and status
+
+Profile and associated emails screen or dialog
+
+
+
+Size:
+
+Width 380px
+
+Height scroll without AppHeader and BottomNavigation
+
+
+
+UI Library Follow:
+
+Shadcn UI
+
+
+
+UI consider for Browser extension Mobile App
