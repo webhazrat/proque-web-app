@@ -1,4 +1,4 @@
-import { Settings } from "lucide-react";
+import { ChevronLeft, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -10,15 +10,31 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
+import Logo from "./logo";
+import { Badge } from "./ui/badge";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export function AppHeader() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const isHome = location.pathname === "/";
   return (
     <header className="flex items-center justify-between py-3 px-4 border-b sticky top-0 bg-background">
-      <div>
-        <h1 className="font-semibold tracking-tight flex items-center gap-2">
-          <img src="favicon.svg" width={20} /> Proque
-        </h1>
-      </div>
+      {isHome ? (
+        <div className="flex items-center gap-2">
+          <Logo /> <Badge variant="outline">v1.0</Badge>
+        </div>
+      ) : (
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={() => navigate(-1)}
+          aria-label="Go back"
+        >
+          <ChevronLeft />
+        </Button>
+      )}
       <DropdownMenu>
         <DropdownMenuTrigger
           render={
@@ -54,7 +70,7 @@ export function AppHeader() {
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
             <DropdownMenuItem>
-              Log out
+              <Link to="/login">Log out</Link>
               <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
             </DropdownMenuItem>
           </DropdownMenuGroup>

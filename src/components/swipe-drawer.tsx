@@ -35,9 +35,9 @@ export function SwipeDrawer({
           </DrawerDescription>
         </DrawerHeader>
         <div className="flex-1 p-4">{children}</div>
-        <DrawerFooter>
+        {/* <DrawerFooter>
           <DrawerClose render={<Button>Close</Button>} />
-        </DrawerFooter>
+        </DrawerFooter> */}
       </DrawerContent>
     </Drawer>
   );

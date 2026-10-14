@@ -4,14 +4,20 @@ import { Home } from "./pages/home";
 import { Tasks } from "./pages/tasks";
 import { Collections } from "./pages/collections";
 import { Collection } from "./pages/collection";
+import Login from "./pages/login";
+import { AppLayout } from "./layouts/app-layout";
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/tasks" element={<Tasks />} />
-      <Route path="/collections" element={<Collections />} />
-      <Route path="/collection/:id" element={<Collection />} />
+      <Route element={<AppLayout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/tasks" element={<Tasks />} />
+        <Route path="/collections" element={<Collections />} />
+        <Route path="/collection/:id" element={<Collection />} />
+      </Route>
+
+      <Route path="/login" element={<Login />} />
     </Routes>
   );
 }
