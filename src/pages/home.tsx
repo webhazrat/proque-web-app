@@ -1,5 +1,3 @@
-import { AppHeader } from "@/components/app-header";
-import { BottomNavigation } from "@/components/bottom-navigation";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {

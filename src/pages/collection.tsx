@@ -1,5 +1,3 @@
-import { AppHeader } from "@/components/app-header";
-import { BottomNavigation } from "@/components/bottom-navigation";
 import { SwipeDrawer } from "@/components/swipe-drawer";
 import { Button } from "@/components/ui/button";
 import { Field, FieldGroup } from "@/components/ui/field";
