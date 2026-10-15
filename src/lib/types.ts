@@ -1,15 +1,33 @@
 export type TaskStatus = "pending" | "processing" | "completed";
 export type TaskPriority = "high" | "medium" | "low";
 
-export interface Task {
+export interface SubTask {
   id: string;
+  projectId: string;
   title: string;
   description?: string;
-  project: string;
   status: TaskStatus;
   priority: TaskPriority;
   dueDate: string;
   orderIndex: number;
+}
+
+export interface ProjectTask {
+  id: string;
+  title: string;
+  description?: string;
+  color: string;
+  category: string;
+  dueDate: string;
+  orderIndex: number;
+  subTasks: SubTask[];
+  isExpanded?: boolean;
+}
+
+// For compatibility with single task detail view
+export interface ActiveTaskSelection {
+  projectId: string;
+  subTaskId: string;
 }
 
 export type CollectionItemType = "link" | "rich_text";
@@ -19,6 +37,7 @@ export interface CollectionItem {
   type: CollectionItemType;
   title: string;
   contentOrUrl: string;
+  domain?: string;
   notes?: string;
   updatedAt: string;
 }

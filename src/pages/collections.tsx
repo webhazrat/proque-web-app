@@ -69,20 +69,18 @@ export function Collections() {
             </div>
 
             <Button onClick={() => setOpenDrawer(true)}>
-              <Plus data-icon="inline-start" /> New
+              <Plus data-icon="inline-start" /> Add New
             </Button>
           </div>
-          <div>
-            <InputGroup>
-              <InputGroupInput
-                placeholder="Search Collections"
-                className="placeholder:text-xs"
-              />
-              <InputGroupAddon align="inline-start">
-                <Search />
-              </InputGroupAddon>
-            </InputGroup>
-          </div>
+          <InputGroup>
+            <InputGroupInput
+              placeholder="Search Collections"
+              className="placeholder:text-xs"
+            />
+            <InputGroupAddon align="inline-start">
+              <Search />
+            </InputGroupAddon>
+          </InputGroup>
           <ItemGroup className="gap-2">
             {initialCollections.map((collection) => (
               <Item
@@ -91,8 +89,8 @@ export function Collections() {
                 key={collection.id}
                 className="cursor-pointer"
               >
-                <ItemMedia variant="icon">
-                  <Folder className="text-purple-500" />
+                <ItemMedia variant="icon" className="self-start">
+                  <Folder className="text-purple-500 mt-0.5" />
                 </ItemMedia>
                 <ItemContent>
                   <ItemTitle>{collection.title}</ItemTitle>

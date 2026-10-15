@@ -35,7 +35,7 @@ export function AppHeader() {
 
   const isHome = location.pathname === "/";
   return (
-    <header className="flex items-center justify-between py-3 px-4 border-b sticky top-0 bg-background">
+    <header className="flex items-center justify-between py-3 px-4 border-b sticky top-0 z-10 bg-background">
       {isHome ? (
         <div className="flex items-center gap-2">
           <Logo /> <Badge variant="outline">v1.0</Badge>

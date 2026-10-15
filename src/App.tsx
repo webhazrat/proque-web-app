@@ -6,6 +6,7 @@ import { Collections } from "./pages/collections";
 import { Collection } from "./pages/collection";
 import Login from "./pages/login";
 import { AppLayout } from "./layouts/app-layout";
+import { Task } from "./pages/task";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Route element={<AppLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/tasks" element={<Tasks />} />
+        <Route path="/task/:id" element={<Task />} />
         <Route path="/collections" element={<Collections />} />
         <Route path="/collection/:id" element={<Collection />} />
       </Route>
