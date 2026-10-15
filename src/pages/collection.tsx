@@ -11,7 +11,6 @@ import {
   Item,
   ItemActions,
   ItemContent,
-  ItemDescription,
   ItemGroup,
   ItemMedia,
   ItemSeparator,
@@ -26,6 +25,7 @@ import {
   Dot,
   FileText,
   Folder,
+  Globe,
   Link2,
   PencilLine,
   Plus,
@@ -102,17 +102,32 @@ export function Collection() {
             </ItemMedia>
             <ItemContent>
               <ItemTitle>{collection?.title}</ItemTitle>
-              <ItemDescription className="text-xs truncate max-w-50">
-                {collection?.description}
-              </ItemDescription>
+              <div className="text-xs text-muted-foreground">
+                <p className="flex items-center gap-1">
+                  <span className="flex items-center gap-1">
+                    <Link2 size={14} />{" "}
+                    {
+                      collection?.items.filter((item) => item.type === "link")
+                        .length
+                    }{" "}
+                    Link
+                  </span>
+                  <Dot size={14} />
+                  <span className="flex items-center gap-1">
+                    <FileText size={12} />{" "}
+                    {
+                      collection?.items.filter(
+                        (item) => item.type === "rich_text",
+                      ).length
+                    }{" "}
+                    Rich Text
+                  </span>
+                </p>
+              </div>
             </ItemContent>
             <ItemActions></ItemActions>
             <ItemSeparator className="my-0 bg-border/50" />
             <div className="text-xs text-muted-foreground flex items-center">
-              <span className="flex items-center gap-1">
-                {collection?.items.length} total items
-              </span>
-              <Dot size={14} />
               <span>Updated {collection?.updatedAt}</span>
             </div>
           </Item>
@@ -141,7 +156,19 @@ export function Collection() {
               {collection?.items.map((item) => (
                 <Item key={item.id} variant="outline">
                   <ItemContent>
-                    <ItemTitle>{item?.title}</ItemTitle>
+                    <ItemTitle>
+                      {" "}
+                      {item.type == "link" ? (
+                        <span className="flex items-center gap-1">
+                          <Globe className="size-3" />
+                        </span>
+                      ) : (
+                        <span className="flex items-center gap-1">
+                          <FileText className="size-3" />
+                        </span>
+                      )}
+                      {item?.title}
+                    </ItemTitle>
 
                     <div className="text-[13px] bg-muted rounded-md px-3 py-2 h-full whitespace-pre-line">
                       {item.type == "link" ? (
@@ -155,38 +182,17 @@ export function Collection() {
                   </ItemContent>
                   <ItemSeparator className="my-0 bg-border/50" />
                   <div className="text-xs text-muted-foreground w-full flex items-center gap-2 justify-between">
-                    {/* {item.type == "link" ? (
-                      <span className="flex items-center gap-1">
-                        <Globe className="size-3" /> Link
-                      </span>
-                    ) : (
-                      <span className="flex items-center gap-1">
-                        <FileText className="size-3" /> Rich Text
-                      </span>
-                    )} */}
                     <span>Added {item?.updatedAt}</span>
                     <div>
-                      <Button
-                        size="icon-xs"
-                        variant="link"
-                        className="text-muted-foreground"
-                      >
+                      <Button size="icon-xs" variant="ghost">
                         <Copy />
                       </Button>
 
-                      <Button
-                        size="icon-xs"
-                        variant="link"
-                        className="text-muted-foreground"
-                      >
+                      <Button size="icon-xs" variant="ghost">
                         <PencilLine />
                       </Button>
 
-                      <Button
-                        size="icon-xs"
-                        variant="link"
-                        className="text-muted-foreground"
-                      >
+                      <Button size="icon-xs" variant="ghost">
                         <Trash2 />
                       </Button>
                     </div>

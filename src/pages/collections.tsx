@@ -1,13 +1,5 @@
 import { SwipeDrawer } from "@/components/swipe-drawer";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { Field, FieldGroup } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 
@@ -18,9 +10,7 @@ import {
 } from "@/components/ui/input-group";
 import {
   Item,
-  ItemActions,
   ItemContent,
-  ItemDescription,
   ItemGroup,
   ItemMedia,
   ItemSeparator,
@@ -30,9 +20,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { initialCollections } from "@/lib/mockData";
 import {
-  ChevronRight,
   Dot,
-  EllipsisVertical,
   FileText,
   Folder,
   Link2,
@@ -108,62 +96,50 @@ export function Collections() {
                 </ItemMedia>
                 <ItemContent>
                   <ItemTitle>{collection.title}</ItemTitle>
-                  <ItemDescription className="text-xs truncate max-w-50">
-                    {collection.description}
-                  </ItemDescription>
+                  <div className="text-xs text-muted-foreground">
+                    <p className="flex items-center gap-1">
+                      <span className="flex items-center gap-1">
+                        <Link2 size={14} />{" "}
+                        {
+                          collection.items.filter(
+                            (item) => item.type === "link",
+                          ).length
+                        }{" "}
+                        Link
+                      </span>
+                      <Dot size={14} />
+                      <span className="flex items-center gap-1">
+                        <FileText size={12} />{" "}
+                        {
+                          collection.items.filter(
+                            (item) => item.type === "rich_text",
+                          ).length
+                        }{" "}
+                        Rich Text
+                      </span>
+                    </p>
+                  </div>
                 </ItemContent>
-                <ItemActions>
-                  <DropdownMenu>
-                    <DropdownMenuTrigger
-                      render={
-                        <Button
-                          variant="ghost"
-                          size="icon-sm"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          <EllipsisVertical />
-                        </Button>
-                      }
-                    />
-                    <DropdownMenuContent className="w-30" align="start">
-                      <DropdownMenuGroup>
-                        <DropdownMenuItem>
-                          <ChevronRight className="size-3.5" /> Open
-                        </DropdownMenuItem>
-                        <DropdownMenuItem>
-                          <PencilLine className="size-3.5" /> Edit
-                        </DropdownMenuItem>
-                      </DropdownMenuGroup>
-                      <DropdownMenuSeparator />
-                      <DropdownMenuGroup>
-                        <DropdownMenuItem variant="destructive">
-                          <Trash2 className="size-3.5" /> Delete
-                        </DropdownMenuItem>
-                      </DropdownMenuGroup>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                </ItemActions>
                 <ItemSeparator className="my-0 bg-border/50" />
                 <div className="text-xs text-muted-foreground flex items-center justify-between w-full">
-                  <div className="flex items-center gap-1">
-                    <span className="flex items-center gap-1">
-                      <Link2 size={14} />{" "}
-                      {
-                        collection.items.filter((item) => item.type === "link")
-                          .length
-                      }
-                    </span>
-                    <Dot size={14} />
-                    <span className="flex items-center gap-1">
-                      <FileText size={12} />{" "}
-                      {
-                        collection.items.filter(
-                          (item) => item.type === "rich_text",
-                        ).length
-                      }
-                    </span>
-                  </div>
                   <span>Updated {collection.updatedAt}</span>
+                  <div>
+                    <Button
+                      onClick={(e) => e.stopPropagation()}
+                      size="icon-xs"
+                      variant="ghost"
+                    >
+                      <PencilLine />
+                    </Button>
+
+                    <Button
+                      onClick={(e) => e.stopPropagation()}
+                      size="icon-xs"
+                      variant="ghost"
+                    >
+                      <Trash2 />
+                    </Button>
+                  </div>
                 </div>
               </Item>
             ))}

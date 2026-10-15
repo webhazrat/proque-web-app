@@ -8,8 +8,8 @@ import {
 import type { ReactNode } from "react";
 
 interface SwipeDrawerProps {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   open: boolean;
   onOpenChange: (open: boolean) => void;
   children: ReactNode;
@@ -25,12 +25,14 @@ export function SwipeDrawer({
   return (
     <Drawer open={open} onOpenChange={onOpenChange} showSwipeHandle>
       <DrawerContent>
-        <DrawerHeader>
-          <DrawerTitle>{title}</DrawerTitle>
-          <DrawerDescription className="text-xs">
-            {description}
-          </DrawerDescription>
-        </DrawerHeader>
+        {title && (
+          <DrawerHeader>
+            <DrawerTitle>{title}</DrawerTitle>
+            <DrawerDescription className="text-xs">
+              {description}
+            </DrawerDescription>
+          </DrawerHeader>
+        )}
         <div className="flex-1 p-4">{children}</div>
         {/* <DrawerFooter>
           <DrawerClose render={<Button>Close</Button>} />
