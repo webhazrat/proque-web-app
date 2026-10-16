@@ -170,9 +170,15 @@ export function Collection() {
                       {item?.title}
                     </ItemTitle>
 
-                    <div className="text-[13px] bg-muted rounded-md px-3 py-2 h-full whitespace-pre-line">
+                    <div
+                      className={`text-[13px] bg-muted rounded-md px-3 py-2 h-full whitespace-pre-line`}
+                    >
                       {item.type == "link" ? (
-                        <a target="_blank" href={item.contentOrUrl}>
+                        <a
+                          target="_blank"
+                          className="wrap-anywhere underline"
+                          href={item.contentOrUrl}
+                        >
                           {item.contentOrUrl}
                         </a>
                       ) : (

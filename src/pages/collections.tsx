@@ -29,12 +29,19 @@ import {
   Search,
   Trash2,
 } from "lucide-react";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export function Collections() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [openDrawer, setOpenDrawer] = useState(false);
+
+  useEffect(() => {
+    if (location.state?.openAddDrawer) {
+      setOpenDrawer(true);
+    }
+  }, [location]);
   return (
     <>
       <SwipeDrawer

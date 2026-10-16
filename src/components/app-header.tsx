@@ -32,6 +32,8 @@ export function AppHeader() {
   const [openDrawer, setOpenDrawer] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const [showAddForm, setShowAddForm] = useState(false);
+  const [otpStep, setOtpStep] = useState(false);
 
   const isHome = location.pathname === "/";
   return (
@@ -85,9 +87,18 @@ export function AppHeader() {
               </ItemDescription>
             </ItemContent>
             <ItemActions>
-              <Button size="sm" variant="link">
-                <Plus /> Add Email
-              </Button>
+              {!showAddForm && (
+                <Button
+                  size="sm"
+                  variant="link"
+                  onClick={() => {
+                    setShowAddForm(true);
+                    setOtpStep(false);
+                  }}
+                >
+                  <Plus /> Add Email
+                </Button>
+              )}
             </ItemActions>
           </Item>
 
@@ -120,21 +131,35 @@ export function AppHeader() {
                 </Button>
               </ItemActions>
             </Item>
-            <Item variant="outline" className="border-green-400">
-              <FieldGroup>
-                <Field>
-                  <div className="flex items-center gap-2 justify-between">
-                    <Label>Link Another Email</Label>{" "}
-                    <span className="text-muted-foreground text-xs">
-                      Cancel
-                    </span>
-                  </div>
-                  <Input placeholder="e.g. - secondary@gmail.com" />
-                  <Button>Send Verification Code</Button>
-                </Field>
-              </FieldGroup>
+            {showAddForm && (
+              <Item variant="outline" className="border-green-400">
+                <FieldGroup>
+                  <Field>
+                    <div className="flex items-center gap-2 justify-between">
+                      <Label>Link Another Email</Label>{" "}
+                      <button
+                        className="text-muted-foreground text-xs"
+                        onClick={() => setShowAddForm(false)}
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                    <Input placeholder="e.g. - secondary@gmail.com" />
+                    <Button
+                      onClick={() => {
+                        setOtpStep(true);
+                        setShowAddForm(false);
+                      }}
+                    >
+                      Send Verification Code
+                    </Button>
+                  </Field>
+                </FieldGroup>
+              </Item>
+            )}
 
-              <FieldGroup>
+            {otpStep && (
+              <Item variant="outline" className="border-green-400">
                 <Field>
                   <div className="flex items-center gap-2 justify-between">
                     <Label>Enter Verification Code</Label>{" "}
@@ -148,11 +173,11 @@ export function AppHeader() {
                   </p>
                   <div className="flex gap-2 items-center">
                     <Input placeholder="e.g. - 445566" />
-                    <Button>Verify</Button>
+                    <Button onClick={() => setOtpStep(false)}>Verify</Button>
                   </div>
                 </Field>
-              </FieldGroup>
-            </Item>
+              </Item>
+            )}
             <ItemSeparator className="my-1 bg-border/50" />
             <ItemFooter>
               <span className="text-xs text-muted-foreground">

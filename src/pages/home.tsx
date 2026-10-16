@@ -25,9 +25,10 @@ import {
   Plus,
   Square,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export function Home() {
+  const navigate = useNavigate();
   return (
     <>
       <div className="space-y-6 overflow-y-auto p-4">
@@ -112,10 +113,24 @@ export function Home() {
 
         <div>
           <div className="grid grid-cols-2 gap-2">
-            <Button variant="outline">
+            <Button
+              variant="outline"
+              onClick={() =>
+                navigate("/tasks", {
+                  state: { openAddDrawer: true },
+                })
+              }
+            >
               <Plus data-icon="inline-start" /> New Task
             </Button>
-            <Button variant="outline">
+            <Button
+              variant="outline"
+              onClick={() =>
+                navigate("/collections", {
+                  state: { openAddDrawer: true },
+                })
+              }
+            >
               <Plus data-icon="inline-start" /> New Collection
             </Button>
           </div>
